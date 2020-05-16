@@ -1,0 +1,22 @@
+{
+    "name": "linwj/bitfinex",
+    "type": "library",
+    "description": "Bitfinex API Like the official document interface, Support for arbitrary extension.",
+    "license": "MIT",
+    "keywords": ["bitfinex","zb","coinbase","bitmex", "binance", "okex", "huobi","kucoin","kumex"],
+    "authors": [
+        {
+            "name": "linwenjun",
+            "email": "465382251@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lin\\Bitfinex\\": "./src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
