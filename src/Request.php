@@ -34,7 +34,6 @@ class Request
     {
         $this->key=$data['key'] ?? '';
         $this->secret=$data['secret'] ?? '';
-        $this->passphrase = $data['passphrase'] ?? '';
         $this->host=$data['host'] ?? '';
         
         $this->options=$data['options'] ?? [];
@@ -64,9 +63,10 @@ class Request
      * 
      * */
     protected function signature(){
-        $sort=$this->sort(array_merge(['accesskey'=>$this->key],$this->data));
-        $this->url=implode('&',$sort);
-        $this->signature = hash_hmac('md5',$this->url,sha1($this->secret));
+        if ($this->type=='POST' && !empty($this->data)) {
+            $signature='/api'.$this->path.$this->nonce.json_encode($this->data);
+            $this->signature = hash_hmac('sha384',$signature,$this->secret);
+        }
     }
     
     /**
@@ -75,24 +75,13 @@ class Request
     protected function headers(){
         $this->headers= [
             'Content-Type' => 'application/json',
-            'User-Agent'=>'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36',
         ];
-    }
-    
-    /**
-     * 
-     * */
-    protected function sort($param)
-    {
-        $u = [];
-        $sort_rank = [];
-        foreach ($param as $k => $v) {
-            $u[] = $k . "=" . urlencode($v);
-            $sort_rank[] = ord($k);
-        }
-        asort($u);
         
-        return $u;
+        if(!empty($this->key) || !empty($this->secret)) $this->headers=array_merge($this->headers,[
+            'bfx-nonce'=>$this->nonce,
+            'bfx-apikey'=>$this->key,
+            'bfx-signature'=>$this->signature,
+        ]);
     }
     
     /**
@@ -121,7 +110,10 @@ class Request
     protected function send(){
         $client = new \GuzzleHttp\Client();
         
-        $url=$this->host.$this->path.'?'.$this->url.'&sign='.$this->signature.'&reqTime='.$this->nonce;
+        $url=$this->host.$this->path;
+        
+        if($this->type=='GET') $url.='?'.http_build_query($this->data);
+        else $this->options['body']=json_encode($this->data);
         
         $response = $client->request($this->type, $url, $this->options);
         

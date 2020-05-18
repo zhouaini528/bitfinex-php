@@ -37,7 +37,7 @@ class Market extends Request
     public function getTicker(array $data=[]){
         $this->host='https://api-pub.bitfinex.com';
         $this->type='GET';
-        $this->path='/v2/ticker/Symbol';
+        $this->path='/v2/ticker/'.$data['symbol'];
         $this->data=$data;
         return $this->exec();
     }

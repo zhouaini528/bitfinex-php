@@ -14,7 +14,7 @@ class Calc extends Request
      * */
     public function postTradeAvg(array $data=[]){
         $this->type='POST';
-        $this->path='/v2/calc/trade/avg';
+        $this->path='/v2/calc/trade/avg?'.http_build_query($data);
         $this->data=$data;
         return $this->exec();
     }
@@ -25,7 +25,7 @@ class Calc extends Request
     public function postFx(array $data=[]){
         $this->host='https://api-pub.bitfinex.com';
         $this->type='POST';
-        $this->path='v2/calc/fx';
+        $this->path='/v2/calc/fx';
         $this->data=$data;
         return $this->exec();
     }
