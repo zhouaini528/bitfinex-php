@@ -62,7 +62,7 @@ $bitfinex->setOptions([
 
 ### Spot API
 
-Market related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/product.php)
+Market related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/market.php)
 ```php
 $bitfinex=new Coinbase();
 
@@ -170,7 +170,7 @@ try {
 }
 ```
 
-Accounts related API [More]()
+Accounts related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/account.php)
 ```php
 $bitfinex=new Coinbase($key,$secret);
 
