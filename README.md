@@ -64,7 +64,7 @@ $bitfinex->setOptions([
 
 Market related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/market.php)
 ```php
-$bitfinex=new Coinbase();
+$bitfinex=new Bitfinex();
 
 try {
     $result=$bitfinex->market()->getPlatformStatus();
@@ -116,7 +116,7 @@ try {
 
 Order related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/order.php)
 ```php
-$bitfinex=new Coinbase($key,$secret);
+$bitfinex=new Bitfinex($key,$secret);
 
 //Place an Order
 try {
@@ -172,7 +172,7 @@ try {
 
 Accounts related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/account.php)
 ```php
-$bitfinex=new Coinbase($key,$secret);
+$bitfinex=new Bitfinex($key,$secret);
 
 try {
     $result=$bitfinex->account()->postInfoUser();
