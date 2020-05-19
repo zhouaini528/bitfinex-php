@@ -29,56 +29,25 @@ $bitfinex->setOptions([
     //'verify'=>false,
 ]);
 
-//Place an Order
 try {
-    $result=$bitfinex->order()->postSubmit([
-        //'cid'=>'',
-        'type'=>'LIMIT',
-        'symbol'=>'tBTCUSD',
-        'price'=>'5000',
-        'amount'=>'0.01',//Amount of order (positive for buy, negative for sell)
-    ]);
+    $result=$bitfinex->account()->postInfoUser();
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
 
-//track the order
 try {
-    $result=$bitfinex->order()->post([
-        //'cid'=>'',
-        'symbol'=>'tBTCUSD',
-        'id'=>['33950998275']
-    ]);
+    $result=$bitfinex->account()->postLoginsHist();
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
 
-//update the order
 try {
-    $result=$bitfinex->order()->postUpdate([
-        //'cid'=>'',
-        'symbol'=>'tBTCUSD',
-        'id'=>'33950998275',
-        'amount'=>0.02,
-        'price'=>6000,
-    ]);
+    $result=$bitfinex->account()->postAuditHist();
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-
-//Cancel an existing order
-try {
-    $result=$bitfinex->order()->postUpdate([
-        //'cid'=>'',
-        'id'=>'33950998275',
-    ]);
-    print_r($result);
-}catch (\Exception $e){
-    print_r(json_decode($e->getMessage(),true));
-}
-
 
 ?>

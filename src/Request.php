@@ -63,7 +63,7 @@ class Request
      * 
      * */
     protected function signature(){
-        if ($this->type=='POST' && !empty($this->data)) {
+        if ($this->type=='POST') {
             $signature='/api'.$this->path.$this->nonce.json_encode($this->data);
             $this->signature = hash_hmac('sha384',$signature,$this->secret);
         }

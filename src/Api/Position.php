@@ -10,11 +10,11 @@ use Lin\Bitfinex\Request;
 class Position extends Request
 {
     /**
-     * POST https://api.bitfinex.com/v2/auth/r/info/margin/key
+     * POST https://api.bitfinex.com/v2/auth/r/info/margin/Key
      * */
     public function postInfoMarginKey(array $data=[]){
         $this->type='POST';
-        $this->path='/v2/auth/r/info/margin/key';
+        $this->path='/v2/auth/r/info/margin/'.$data['key'];
         $this->data=$data;
         return $this->exec();
     }

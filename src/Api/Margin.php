@@ -130,11 +130,21 @@ class Margin extends Request
     }
     
     /**
-     *POST https://api.bitfinex.com/v2/auth/r/info/funding/key
+     *POST https://api.bitfinex.com/v2/auth/r/funding/trades/Symbol/hist
+     * */
+    public function postTradesHist(array $data=[]){
+        $this->type='POST';
+        $this->path='/v2/auth/r/funding/trades/'.$data['symbol'].'/hist';
+        $this->data=$data;
+        return $this->exec();
+    }
+    
+    /**
+     *POST https://api.bitfinex.com/v2/auth/r/info/funding/Key
      * */
     public function postKey(array $data=[]){
         $this->type='POST';
-        $this->path='/v2/auth/r/info/funding/key';
+        $this->path='/v2/auth/r/info/funding/'.$data['key'];
         $this->data=$data;
         return $this->exec();
     }

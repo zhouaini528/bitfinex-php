@@ -57,3 +57,145 @@ $bitfinex->setOptions([
     //'verify'=>false,
 ]);
 ```
+
+### Spot API
+
+Market related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/product.php)
+```php
+$bitfinex=new Coinbase();
+
+try {
+    $result=$bitfinex->market()->getPlatformStatus();
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->market()->getTickers([
+        'symbols'=>'tBTCUSD'
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->market()->getTicker([
+        'symbol'=>'tBTCUSD'
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->market()->getTradesHist([
+        'symbol'=>'tBTCUSD',
+        'limit'=>2,
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->market()->getBook([
+        'symbol'=>'tBTCUSD',
+        'precision'=>'P0',
+        'len'=>1
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+```
+
+Order related API [More](https://github.com/zhouaini528/bitfinex-php/blob/master/tests/order.php)
+```php
+$bitfinex=new Coinbase($key,$secret);
+
+//Place an Order
+try {
+    $result=$bitfinex->order()->postSubmit([
+        //'cid'=>'',
+        'type'=>'LIMIT',
+        'symbol'=>'tBTCUSD',
+        'price'=>'5000',
+        'amount'=>'0.01',//Amount of order (positive for buy, negative for sell)
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+//track the order
+try {
+    $result=$bitfinex->order()->post([
+        //'cid'=>'',
+        'symbol'=>'tBTCUSD',
+        'id'=>['33950998275']
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+//update the order
+try {
+    $result=$bitfinex->order()->postUpdate([
+        //'cid'=>'',
+        'symbol'=>'tBTCUSD',
+        'id'=>'33950998275',
+        'amount'=>0.02,
+        'price'=>6000,
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+//Cancel an existing order
+try {
+    $result=$bitfinex->order()->postUpdate([
+        //'cid'=>'',
+        'id'=>'33950998275',
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+```
+
+Accounts related API [More]()
+```php
+$bitfinex=new Coinbase($key,$secret);
+
+try {
+    $result=$bitfinex->account()->postInfoUser();
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->account()->postLoginsHist();
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+try {
+    $result=$bitfinex->account()->postAuditHist();
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+```
+
+[More Tests](https://github.com/zhouaini528/bitfinex-php/tree/master/tests)
+
+[More API](https://github.com/zhouaini528/bitfinex-php/tree/master/src/Api)
+
