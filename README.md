@@ -5,7 +5,7 @@ Bitfinex docs [https://docs.bitfinex.com/](https://docs.bitfinex.com/)
 V1 not supported
 V2 support
 
-All interface methods are initialized the same as those provided by okex. See details [src/api](https://github.com/zhouaini528/bitfinex-php/tree/master/src/Api)
+All interface methods are initialized the same as those provided by Bitfinex. See details [src/api](https://github.com/zhouaini528/bitfinex-php/tree/master/src/Api)
 
 Most of the interface is now complete, and the user can continue to extend it based on my design, working with me to improve it.
 
