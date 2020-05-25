@@ -3,6 +3,7 @@
 Bitfinex 文档地址 [https://docs.bitfinex.com/](https://docs.bitfinex.com/)
 
 V1 不支持
+
 V2 支持
 
 所有接口方法的初始化都与Bitfinex提供的方法相同。更多细节 [src/api](https://github.com/zhouaini528/zb-php/tree/master/src/Api)
