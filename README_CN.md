@@ -34,6 +34,8 @@ V2 支持
 
 [Bitfinex](https://github.com/zhouaini528/zb-php)
 
+[Bittrex](https://github.com/zhouaini528/bittrex-php)
+
 #### 安装方式
 ```
 composer require linwj/bitfinex
